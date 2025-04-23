@@ -19,8 +19,6 @@ Songle is a song guessing game based off the BillBoard Top 100 List
 1.Compile the Java file:
     '''
     javac Songle.java
-    '''
 2. Run the Java file:
     '''
     java Songle
-    '''
