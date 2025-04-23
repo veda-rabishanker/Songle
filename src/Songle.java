@@ -101,3 +101,5 @@ public class Songle {
 //1. Use one of the data structures taught to us to store the data of each guess to be then express
 //the color of yellow or green.
 //2. Create the code for storing each guess and comapring it the actual artist name using aristNameSplit[]
+//3. Fix the README.md file to be formatted correctly and add our names as well as format the code to run
+//the terminal execution correctly.
