@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -32,6 +33,8 @@ public class Songle {
         System.out.println("Welcome to Songle!");
         System.out.println("You will be given a random album name and you have to guess the artist name.");
         System.out.println("You can type 'exit' to quit the game at any time.");
+        
+        //do while here
         while(true){
             System.out.println("Do you want to play? (yes/no)");
             Scanner scanner = new Scanner(System.in);
@@ -71,29 +74,57 @@ public class Songle {
     //then prints " _ " for each letter in the artist name
     // asks the user to guess and they have 5 guesses
     public static void playGame(){
-        //
+//
         int randomIndex = (int) (Math.random() * albumName.size());
-
         String randomAlbum = albumName.get(randomIndex);
-
         String albumArtist = songList.get(randomAlbum);
-
         //this stores each character of the artist name in a array to help us with Wordle lettering
-        String[] artistNameSplit = albumArtist.split(" ");
-
+        String[] artistNameSplit = albumArtist.split("");
+        System.out.println("x");
         System.out.println("\n\nGuess the artist name: " + randomAlbum);
         for(int i = 0; i < albumArtist.length(); i++){
             System.out.print(" _ ");
         }
 
-        System.out.println("\n\nYou have 5 attempts to guess the artist name.");
-        int attempts = 5;
+        int attempts = (int) ((albumArtist.length() * 6)/5);
+        if(attempts > 10){
+            attempts = 10;
+        }
+        System.out.println("\n\nYou have " + attempts + " attempts to guess the artist name. If you guess more or less than the allotted characters you autolose");
         for(int i = 0; i < attempts; i++){
             System.out.print("Enter here: ");
             String guess = sc.nextLine();
-        }
 
-    }
+            //turn this into a switch statement
+            if(guess.equalsIgnoreCase(albumArtist)){
+                System.out.println("Great Job!");
+                break;
+            }else if(guess.length() != albumArtist.length()){
+                System.out.println("You lose follow instructions next time smh");
+                break;
+            }else{
+                String[] guessSplit = guess.split("");
+                String[] artistSplit = albumArtist.split("");
+                ArrayList<String> whatTheyGot = new ArrayList<>();
+        //* grey ** is yellow *** is green
+                for(int j = 0; j < guessSplit.length; j++){
+
+                    //turn this into a switch statement
+                    if(guessSplit[j].equalsIgnoreCase(artistSplit[j])){
+                        whatTheyGot.add("*"+guessSplit[j]);
+                    }else if(Arrays.asList(artistSplit).contains(guessSplit[j])){
+                        whatTheyGot.add("**"+guessSplit[j]);
+                    }else{
+                        whatTheyGot.add("***"+guessSplit[j]);
+                        }
+                    }
+                for(String g : whatTheyGot){
+                    System.out.print(g);
+                }
+            }
+        
+        }
+        }
     
 }
 
@@ -103,3 +134,10 @@ public class Songle {
 //2. Create the code for storing each guess and comapring it the actual artist name using aristNameSplit[]
 //3. Fix the README.md file to be formatted correctly and add our names as well as format the code to run
 //the terminal execution correctly.
+
+//hashmap 
+
+//switch case
+
+//do while loop
+
