@@ -50,11 +50,6 @@ public class Songle {
                 System.out.println("Invalid input. Please type 'yes' or 'no'.");
             }
         }
-        
-        
-
-       
-
     }
 
     //takes in the file and reads it line by lines
@@ -66,6 +61,18 @@ public class Songle {
             String line = fileReader.nextLine();
             String[] parts = line.split(" @ ");
             songList.put(parts[0], parts[1]);
+        }
+    }
+
+    public static void printColorful(ArrayList<String> whatTheyGot){
+        for(String guess:whatTheyGot){
+            if(guess.startsWith("***")){
+                System.out.print("\u001B[31m" + guess.substring(3) + "\u001B[0m");// green
+            }else if(guess.startsWith("**")){
+                System.out.print("\u001B[33m" + guess.substring(2) + "\u001B[0m"); // yellow
+            }else{
+                System.out.print("\u001B[32m" + guess.substring(1) + "\u001B[0m");// grey
+            }
         }
     }
 
@@ -118,12 +125,10 @@ public class Songle {
                         whatTheyGot.add("***"+guessSplit[j]);
                         }
                     }
-                for(String g : whatTheyGot){
-                    System.out.print(g);
-                }
+                printColorful(whatTheyGot);
             }
         
-        }
+         }
         }
     
 }
